@@ -1,17 +1,10 @@
-import { createInterface } from "node:readline/promises";
-async function main(): Promise <void> {
-    const leitor = createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-
-    const numero : number = Number(
-        await leitor.question("Digite um numero: ")
-    );
-    
-    for (let contador: number = 1; contador <= numero; contador++){
-        console.log(`Contador : ${contador}`);
+function verificarIdade(idade: number): string{
+    if (idade >= 18) {
+        return "Maior de idade";
     }
-    leitor.close;
+    return "Menor de idade";
 }
-main();
+
+const resultado = verificarIdade(20);
+
+console.log (resultado);

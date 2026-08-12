@@ -1,5 +1,7 @@
-const nome:string = "André";
-const idade: number = 40;
+function exibirDobro (numero: number): void{
+    console.log(numero*2);
+}
 
-console.log("Nome", nome);
-console.log("Idade", idade);
+exibirDobro(5);
+exibirDobro(8);
+exibirDobro(10);

@@ -1,18 +1,11 @@
-import { createInterface } from "node:readline/promises";
-async function main(): Promise <void> {
-    const leitor = createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-    const nome: string = await leitor.question(
-        "Digite seu nome: "
-    );
-    const idade: number = Number (await leitor.question("Digite sua idade: "));
-
-    console.log(`Ola, ${nome} Você tem ${idade} anos.` );
-
-    leitor.close();
-
-
+function exibirAluno(
+    nome: String,
+    idade: number
+): void {
+    console.log (`Nome: ${nome}`);
+    console.log (`Idade: ${idade}`);
 }
-main();
+
+exibirAluno("Ana", 17);
+exibirAluno("João", 16);
+exibirAluno("Pedro", 15);

@@ -1,28 +1,12 @@
-import { createInterface } from "node:readline/promises";
-async function main(): Promise <void> {
-    const leitor = createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
+function exibirSoma(
+    numero1: number,
+    numero2: number
+): void {
+    const resultado = numero1 + numero2;
 
-    const nome: string = await leitor.question(
-        "Digite seu nome: "
-    );
-
-    const idade : number = Number (await leitor.question(
-        "Digite sua idade: "
-    ));
-
-    if (idade<0) {
-        console.log("idade invalida");
-    }
-    else if (idade<12) {
-        console.log(`${nome} é criança`)
-    }
-    else if (idade<18) {
-        console.log(`${nome} é adolescente`)
-    }
-    else {
-        console.log(`${nome} é adulto`);
-    }
+    console.log(`Resultado: ${resultado}`);
 }
+
+exibirSoma(10,5);
+exibirSoma(3,4);
+exibirSoma(210,3);
