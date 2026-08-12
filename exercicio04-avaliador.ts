@@ -22,7 +22,8 @@ async function iniciarSistema() {
     mediaN:number=0,
     nota:number,
     notasTotal:number=0,
-    somaNotas = 0;
+    somaNotas:number = 0;
+    let classificacao: string;
 
     console.log("Sistema avaliador");
     console.log("");
@@ -57,14 +58,24 @@ async function iniciarSistema() {
     function media (somaNotas: number, notasTotal: number): void {
         const mediaN = somaNotas / notasTotal;
     }
-    async function classificar 
+    async function classificar (){
+        if (mediaN < 5){
+            classificacao = "O filme ou jogo é considerado fraco";
+        }else if (mediaN>=5 && mediaN <7){
+            classificacao= "O filme ou jogo é considerado regular";
+        }else if(mediaN>=7 && mediaN <9){
+            classificacao = "O filme ou jogo é considerado muito bom"
+        }else{
+            classificacao = "O filme ou jogo é considerado excelente"
+        }
+    }
 
     
 }
-
+RelatorioNotas();
 console.log(`AVALIACAO: ${nome}`);
 console.log("");
-console.log(notas);
+console.log(`As notas foram: ${notas[5]}`);
 console.log("");
 console.log(`media: ${mediaN}`);
 console.log("");
@@ -75,3 +86,5 @@ console.log("");
 console.log(`As notas acima de 8 foram: ${notaAcima8}`);
 
 }
+
+iniciarSistema();
