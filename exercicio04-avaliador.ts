@@ -1,11 +1,11 @@
-import { push } from "node:stream/iter";
-import * as readline from "readline";
+
+import * as readline from "node:readline";
+import process from "node:process";
 
 const leia = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-
 function perguntar(pergunta: string): Promise<string> {
     return new Promise((resolve)=> {
         leia.question(pergunta, (resposta: string) =>{
@@ -17,13 +17,13 @@ function perguntar(pergunta: string): Promise<string> {
 
 async function iniciarSistema() {
     let MaiorNota: number = 0,
-    MenorNota: number = 0,
+    MenorNota: number = Infinity,
     notaAcima8:number= 0,
     mediaN:number=0,
     nota:number,
     notasTotal:number=0,
     somaNotas:number = 0;
-    let classificacao: string;
+    let classificacao: string = "";
 
     console.log("Sistema avaliador");
     console.log("");
@@ -37,14 +37,13 @@ async function iniciarSistema() {
    async function RelatorioNotas(): Promise <void>{
     for (let i = 0; i<5; i++){
      let Rnota = await perguntar ("Informe a nota do filme ou jogo: ")
-     nota = parseInt(Rnota);
-     MenorNota = nota;
+     nota = parseFloat(Rnota);
      notas.push (nota);
      notasTotal++;
      somaNotas += nota;
      if (nota > MaiorNota){
         MaiorNota = nota;
-     }else if (nota > 8){
+     } if (nota > 8){
         notaAcima8++
      }
      else if (nota > MaiorNota && nota > 8){
@@ -55,8 +54,7 @@ async function iniciarSistema() {
      }
         
     }
-    function media (somaNotas: number, notasTotal: number): void {
-        const mediaN = somaNotas / notasTotal;
+  mediaN = somaNotas / notasTotal;
     }
     async function classificar (){
         if (mediaN < 5){
@@ -71,11 +69,13 @@ async function iniciarSistema() {
     }
 
     
-}
-RelatorioNotas();
+
+await RelatorioNotas();
+await classificar();
+console.log("");
 console.log(`AVALIACAO: ${nome}`);
 console.log("");
-console.log(`As notas foram: ${notas[5]}`);
+console.log(`As notas foram: ${notas.join(", ")}`);
 console.log("");
 console.log(`media: ${mediaN}`);
 console.log("");
@@ -84,7 +84,10 @@ console.log("");
 console.log(`A menor nota foi: ${MenorNota}`);
 console.log("");
 console.log(`As notas acima de 8 foram: ${notaAcima8}`);
-
+console.log (`classificacao: ${classificacao}`)
+    
+leia.close;
 }
 
 iniciarSistema();
+
